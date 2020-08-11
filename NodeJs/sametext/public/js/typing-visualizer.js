@@ -3,9 +3,7 @@
  */
 
 function TypingVisualizer(options) {
-
-    console.log("options", options);
-
+    
     if(!options) { options = {} }
 
     this.deltaX = 3;

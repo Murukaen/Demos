@@ -179,7 +179,6 @@ function verifyText(form) {
         }
         swapContent('collect', 'step_loading');
         form.tp.value = tp;
-        console.log(tp);
         return true;
     } else {
         alert('Too many typos, please re-type');
