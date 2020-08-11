@@ -17,7 +17,7 @@ var index = {
                 lastTp: '',
                 internalUserId: null,
                 isNewUser: false,
-                diagramCount: 0,
+                patternCount: 0,
                 messages: {
                     errors: []
                 }
@@ -70,7 +70,7 @@ var index = {
                     result['count'] = result['mobilecount'];
                 }
                 if (result['success'] === 1) {
-                    sessionData.diagramCount = result.count;
+                    sessionData.patternCount = result.count;
                     req.session.save(function () {
                         if (result.count > 0) {
                             /** User is allready enrolled, redirect to verify. */

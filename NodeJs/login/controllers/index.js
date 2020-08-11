@@ -71,7 +71,7 @@ var index = {
                     if(result['count'] > 0) {
                         /** The user is enrolled with the same textId */
                         sessionData.wrongPassword = false;
-                        sessionData.diagramCount = result['count'];
+                        sessionData.patternCount = result['count'];
                         /** Verifying user diagram */
                         typingDnaClient.verify(sessionData.internalUserId, typing_pattern, req.body.quality || 2,
                             function(error, result) {

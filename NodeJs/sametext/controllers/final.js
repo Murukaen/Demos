@@ -10,7 +10,7 @@ function final(req, res) {
     /** Check session variables for the last authentication result and display them. */
     var loggedIn = (req.session && req.session.data.typingResult === 1);
     var lastResult = req.session.data.lastResult;
-    var diagramCount = sessionData.diagramCount || 0;
+    var patternCount = sessionData.patternCount || 0;
     var device = sessionData.device || 'desktop';
     var resultColour = '#f8cd00';
     var showEnroll = false;
@@ -30,7 +30,7 @@ function final(req, res) {
         sid: req.sessionID,
         loggedIn: loggedIn,
         lastResult: lastResult,
-        diagramCount: diagramCount,
+        patternCount: patternCount,
         device: device,
         resultColour: resultColour,
         showEnroll: showEnroll

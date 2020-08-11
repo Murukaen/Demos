@@ -18,7 +18,7 @@ var final = {
         var wrongPassword = sessionData.wrongPassword;
         var isNewUSer = sessionData.isNewUser;
         var messages = Object.assign({},sessionData.messages);
-        var diagramCount = sessionData.diagramCount || 0;
+        var patternCount = sessionData.patternCount || 0;
         var device = sessionData.device;
         res.render('final', {
             title: 'Final - TypingDNA',
@@ -29,7 +29,7 @@ var final = {
             lastResult: lastResult,
             messages: messages,
             isNewUser: isNewUSer,
-            diagramCount: diagramCount,
+            patternCount: patternCount,
             device: device
         });
     },
