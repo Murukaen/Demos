@@ -53,7 +53,7 @@ var index = {
                 userId: sessionData.internalUserId,
                 textId: textId,
                 device: sessionData.device ,
-                type: ['diagram']
+                type: 1
             },
             function (error, result) {
                 if (error || result['count'] === undefined || result['success'] === 0) {

@@ -40,7 +40,7 @@ var index = {
          */
         sessionData.internalUserId = functions.getInternalUserId(req.body['username'], global.config.someprivatekey);
         sessionData.textId = req.body['textid'];
-        var typing_pattern = req.body['diagram'];
+        var typing_pattern = req.body['typingPattern'];
         var isMobile = functions.isMobile(req.headers['user-agent']);
         sessionData.device = isMobile ? 'mobile' : 'desktop';
 
@@ -50,7 +50,7 @@ var index = {
                 userId: sessionData.internalUserId,
                 textId: sessionData.textId,
                 device: isMobile ? 'mobile' : 'desktop',
-                type: ['diagram', 'extended']
+                type: [1,2]
             },
             function(error, result) {
                 if(error || result['count'] === undefined || result['success'] === 0) {
@@ -72,7 +72,7 @@ var index = {
                         /** The user is enrolled with the same textId */
                         sessionData.wrongPassword = false;
                         sessionData.patternCount = result['count'];
-                        /** Verifying user diagram */
+                        /** Verifying user typing pattern */
                         typingDnaClient.verify(sessionData.internalUserId, typing_pattern, req.body.quality || 2,
                             function(error, result) {
                                 sessionData.lastResult = result;
@@ -82,7 +82,7 @@ var index = {
                                 }
                                 sessionData.typingResult = result['result'];
                                 if(result['result'] === 1) {
-                                    sessionData.diagram = typing_pattern;
+                                    sessionData.typingPattern = typing_pattern;
                                 }
                                 /** We have the verification result redirect to final step */
                                 return  req.session.save(function(){
@@ -97,7 +97,7 @@ var index = {
                         typingDnaClient.check({
                                 userId : sessionData.internalUserId,
                                 device: isMobile? 'mobile' : 'desktop',
-                                type: ['diagram']
+                                type: 1
                             },
                             function(error, result) {
                                 if(error || result['count'] === undefined || result['success'] === 0) {

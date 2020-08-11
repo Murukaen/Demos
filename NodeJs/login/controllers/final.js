@@ -46,11 +46,11 @@ var final = {
 
         var loggedIn = sessionData.typingResult === 1;
         if(loggedIn) {
-            /** user is logged in, save the diagram */
-            if(sessionData.diagram) {
+            /** user is logged in, save the typing pattern */
+            if(sessionData.typingPattern) {
                 typingDnaClient.save(
                     sessionUserId,
-                    sessionData.diagram,
+                    sessionData.typingPattern,
                     function(err) {
                         if(err) {
                             return functions.displayError(req, res, {clearSession: true, message: 'Error saving user data.'});
@@ -68,7 +68,7 @@ var final = {
             var params = {
                 userId: sessionUserId,
                 device: sessionData.device,
-                type: 'diagram'
+                type: 1
             };
             typingDnaClient.delete(params, function(err) {
                 if(err) {

@@ -48,7 +48,7 @@ var index = {
                 userId: sessionData.internalUserId,
                 textId: sessionData.textId,
                 device: isMobile ? 'mobile' : 'desktop',
-                type: ['diagram', 'extended']
+                type: [1,2]
             },
             function(error, result) {
                 if(error || result['count'] === undefined || result['success'] === 0) {

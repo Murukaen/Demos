@@ -9,7 +9,7 @@ block content
             p If you already registered in the demo, enter your previous email to be verified by typing biometrics.
             br
             form(method='post' onsubmit=' return validateUser(this)')
-                input(type="hidden" name="diagram")
+                input(type="hidden" name="typingPattern")
                 input(type="hidden" name="textid")
                 div.input-group
                     span.input-group-addon Your email
@@ -45,7 +45,7 @@ block content
                 var user = form.username.value.toString().trim();
                 var pass = form.password.value.toString().trim();
                 form.textid.value = TypingDNA.getTextId(user + pass);
-                form.diagram.value = tdna.getDiagram(user + pass);
+                form.typingPattern.value = tdna.getDiagram(user + pass);
                 return true;
             } else {
                 alert('Your username/id should be at least 6 characters in length');
