@@ -27,8 +27,9 @@ block content
             p Loading...
     script.
         tdna = new TypingDNA(); /** creates an instance of the TypingDNA typing pattern recording class */
+        tdna.addTarget('username');
+        tdna.addTarget('password');
         new AutocompleteDisabler({showTypingVisualizer: true, showTDNALogo: true});
-        tdna.startDiagram(); /** starts the recording of a new typing pattern, will call tdna.reset() to reset later *
         document.getElementById('username').focus();
 
         /*****************************************************
@@ -45,7 +46,7 @@ block content
                 var user = form.username.value.toString().trim();
                 var pass = form.password.value.toString().trim();
                 form.textid.value = TypingDNA.getTextId(user + pass);
-                form.typingPattern.value = tdna.getDiagram(user + pass);
+                form.typingPattern.value = tdna.getTypingPattern({type:1});
                 return true;
             } else {
                 alert('Your username/id should be at least 6 characters in length');

@@ -42,7 +42,7 @@ block content
     if(!finish)
       script.
           tdna = new TypingDNA(); /** creates an instance of the TypingDNA typing pattern recording class */
-          tdna.start(); /** starts the recording of a new typing pattern, will call tdna.reset() to reset later */
+        //-   tdna.start(); /** starts the recording of a new typing pattern, will call tdna.reset() to reset later */
           var tp = ''; /** the typing pattern String variable to be recorded and to be sent to the server/API */
           var currentQuote = ''; /** the text to be typed at a each step, to be set independently */
           var nextFunction; /** a proxy for the next function in chain */
@@ -70,7 +70,7 @@ block content
               }
               if(fastCompareTexts(document.getElementById("inputtextbox").value, currentQuote) > 0.7) {
                   /** at least 70% of the words should be typed correctly */
-                  var tp = tdna.getTypingPattern({type:1, extended:true, length:300});
+                  var tp = tdna.getTypingPattern({type:1, extended:true, length:300}); // TODO: consider removing "extended" as user & pass are sensitive info
                   if(tdna.isMobile() && TypingDNA.checkMobileValidity(tp) < 0.7) {
                       swapContent('collect', 'mobile');
                       return false;
