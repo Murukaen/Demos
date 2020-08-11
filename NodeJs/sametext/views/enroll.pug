@@ -37,6 +37,8 @@ block content
         p Loading...
     if(!finish)
       script.
+          typingVisualizer = new TypingVisualizer();
+          typingVisualizer.addTarget(['inputtextbox']);
           tdna = new TypingDNA(); /** creates an instance of the TypingDNA typing pattern recording class */
           tdna.start(); /** starts the recording of a new typing pattern, will call tdna.reset() to reset later */
           var tp = ''; /** the typing pattern String variable to be recorded and to be sent to the server/API */
