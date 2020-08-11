@@ -15,7 +15,7 @@ block content
             br
             textarea.form-control(rows="1", cols="100", id="inputtextbox", name="inputtextbox", oncopy="return false", onpaste="return false", onkeyup="highlight('pAH','pA', this)", placeholder="Type the text loaded above")
             br
-            form(method='POST', onsubmit='return enroll(this)')
+            form(method='POST', onsubmit='return verifyText(this)')
                 input(type="hidden" name="session_id", value=sid)
                 input(type="hidden" name="tp")
                 div
@@ -54,37 +54,9 @@ block content
               currentQuote = '!{currentQuote.replace(/'/g, "\\'")}';
               highlight('pAH', 'pA');
               currentTypeArea.focus();
-              nextFunction = enroll;
+              nextFunction = verifyText;
               /** sets the next function */
           })();
-
-          /*****************************************************
-           * called after finishing the second learning step;
-           * if second text is ok, shows the finish page;
-           *****************************************************/
-          function enroll(form) {
-              if(!form) {
-                  return false;
-              }
-              if(fastCompareTexts(document.getElementById("inputtextbox").value, currentQuote) > 0.7) {
-                  /** at least 70% of the words should be typed correctly */
-                  var tp = tdna.getTypingPattern({ type: 1, text: currentQuote });
-                  if(tdna.isMobile() && TypingDNA.checkMobileValidity(tp) < 0.7) {
-                      swapContent('collect', 'mobile');
-                      return false;
-                  }
-                  swapContent('collect', 'step_loading', function() {
-                      currentTypeArea.blur();
-                      /** removes focus */
-                      currentQuote = "";
-                  });
-                  form.tp.value = tp;
-                  return true;
-              } else {
-                  alert('Too many typos, please re-type');
-                  return false
-              }
-          }
 
           /** checks if Enter is pressed on text forms and calls the next function */
           initControls();

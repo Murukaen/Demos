@@ -169,6 +169,9 @@ function fastCompareTexts(t1, t2) {
 }
 
 function verifyText(form) {
+    if(!form) {
+        return false;
+    }
     if (fastCompareTexts(document.getElementById('inputtextbox').value, currentQuote) > 0.7) {
         /** at least 70% of the words should be typed correctly */
         var tp = tdna.getTypingPattern({ type: 1, text: currentQuote });
