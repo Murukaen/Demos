@@ -83,13 +83,34 @@ var index = {
                                 sessionData.typingResult = result['result'];
                                 if(result['result'] === 1) {
                                     sessionData.typingPattern = typing_pattern;
+                                    if (result['score'] > global.config.options.autoEnrollThreshold) {
+                                        // if score exceeds threshold, save pattern (auto-enroll)
+                                        typingDnaClient.save(
+                                            sessionData.internalUserId,
+                                            typing_pattern,
+                                            function(err,result) {
+                                                if(err || (result && result['success'] === 0)) {
+                                                    return functions.displayError(req, res,
+                                                        {clearSession: true, message: 'Error saving user data.'
+                                                        });
+                                                }
+                                                return req.session.save(function() {
+                                                    res.redirect('final');
+                                                })
+                                            })
+                                    } else {
+                                        return  req.session.save(function(){
+                                            res.redirect('final');
+                                        })
+                                    }
+                                } else {
+                                    /** We have the verification result redirect to final step */
+                                    return  req.session.save(function(){
+                                        res.redirect('final');
+                                    })
                                 }
-                                /** We have the verification result redirect to final step */
-                                return  req.session.save(function(){
-                                    res.redirect('final');
-                                })
                             })
-                    }else {
+                    } else {
                         /**
                          * The user does not have previously saved typing pattern for this textId
                          * check if he has patterns with other textIs

@@ -33,6 +33,12 @@ var final = {
             }
         }
 
+        var showEnroll = lastResult && lastResult.score && loggedIn && lastResult.score >= global.config.options.autoEnrollThreshold;
+
+        if (showEnroll) {
+            patternCount += 1;
+        }
+
         res.render('final', {
             title: 'Final - TypingDNA',
             sid:req.sessionID,
@@ -44,7 +50,8 @@ var final = {
             isNewUser: isNewUSer,
             patternCount: patternCount,
             device: device,
-            confidence: confidence
+            confidence: confidence,
+            showEnroll: showEnroll
         });
     },
 

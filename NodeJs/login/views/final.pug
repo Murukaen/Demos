@@ -26,6 +26,9 @@ block content
                                     span.result #{device}
                                 div.name Enrollments
                                     span.result#enrollments #{patternCount}
+                    if showEnroll
+                        i.fa.fa-check(style='color:#1fb01f')
+                        p#autoenroll(style='display:inline;') This typing pattern has been automatically <b>enrolled</b>, as the <b>score > 90</b>
                     div(style={'padding-top': '20px'})
                         //- button#btn_next.btn.btn-finance(onclick="restart(" + (displayDebug ? 'true' : 'false') + ",'index');" role="button" style='float:left; margin-right: 20px;')
                         //-     b Try Again      
