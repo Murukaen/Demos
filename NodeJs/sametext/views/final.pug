@@ -19,6 +19,8 @@ block content
                             .col-md-8.col-xs-12.demo-result
                                 div.name TypingDNA match
                                     span.result-green #{lastResult.result === 1 ? 'true' : 'false'}
+                                div.name Confidence
+                                    span.result #{confidence}
                                 div.name Device
                                     span.result #{device}
                                 div.name Enrollments
@@ -41,6 +43,8 @@ block content
                             .col-md-8.col-xs-12.demo-result
                                 div.name TypingDNA match
                                     span.result-red #{lastResult.result === 1 ? 'true' : 'false'}
+                                div.name Confidence
+                                    span.result #{confidence}
                                 div.name Device
                                     span.result #{device}
                                 div.name Enrollments

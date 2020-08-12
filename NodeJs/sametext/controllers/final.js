@@ -25,6 +25,19 @@ function final(req, res) {
             resultColour = '#45bb64'
         }
     }
+
+    var confidence;
+        
+    if (lastResult !== undefined) {
+        confidence = "Low";
+        if (lastResult.confidence >= global.config.options.highConfidence) {
+            confidence = 'High';
+        }
+        else if (lastResult.confidence >= global.config.options.mediumConfidence) {
+            confidence = 'Medium';
+        }
+    }
+
     res.render('final', {
         title: 'Final - TypingDNA',
         sid: req.sessionID,
@@ -33,7 +46,8 @@ function final(req, res) {
         patternCount: patternCount,
         device: device,
         resultColour: resultColour,
-        showEnroll: showEnroll
+        showEnroll: showEnroll,
+        confidence: confidence
     });
     req.session.data = {};
 }
