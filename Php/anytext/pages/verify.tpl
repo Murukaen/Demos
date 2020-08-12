@@ -87,7 +87,7 @@
 			if (fastCompareTexts(document.getElementById("verifytext1").value, currentQuote) > 0.7) {
 				/** at least 70% of the words should be typed correctly */
                 swapContent('step_verify1', 'step_loading');
-				var tp = tdna.get(300);
+				var tp = tdna.getTypingPattern({type: 2, length: 300});
 				var params = {
 					step: 'verify',
 					tp: tp,
@@ -132,7 +132,7 @@
 			if (fastCompareTexts(document.getElementById('verifytext2').value, currentQuote) > 0.7) {
 				/** at least 70% of the words should be typed correctly */
 				swapContent('step_verify2', 'step_loading');
-				var tp = tdna.get(300);
+				var tp = tdna.getTypingPattern({type: 2, length: 300});
 				var params = {
 					step: 'verify',
 					tp: tp,

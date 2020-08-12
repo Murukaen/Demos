@@ -28,7 +28,7 @@
 			<div><a class="btn btn-colors" onclick="nextFunction();" role="button" id="btn_learn1"><b>Next step</b></a></div>
 		</div>
 
-		<!-- Learn/save typing pattern #1 -->
+		<!-- Learn/save typing pattern #2 -->
 		<div id="step_learn2" class="step">
 			<p>
 				<h4>Step 2/2: Please type one more text</h4></p>
@@ -145,7 +145,7 @@
 		}
 
 		function learn(count, callback) {
-			var tp = tdna.get(count);
+			var tp = tdna.getTypingPattern({type: 2, length: count});
 			var params = {
 				step: 'enroll',
 				tp: tp,
