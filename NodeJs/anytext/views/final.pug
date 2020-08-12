@@ -25,6 +25,9 @@ block content
                                     span.result #{device}
                                 div.name Enrollments
                                     span.result#enrollments #{patternCount}
+                    if showEnroll
+                        i.fa.fa-check(style='color:#1fb01f')
+                        p#autoenroll(style='display:inline;') This typing pattern has been automatically <b>enrolled</b>, as the <b>score > 90</b>
                 span.result-title
             else
                 .form-group(style="margin-bottom: 5px;")
