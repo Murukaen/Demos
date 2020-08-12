@@ -20,6 +20,19 @@ var final = {
         var messages = Object.assign({},sessionData.messages);
         var patternCount = sessionData.patternCount || 0;
         var device = sessionData.device;
+
+        var confidence;
+        
+        if (lastResult !== undefined) {
+            confidence = "Low";
+            if (lastResult.confidence >= global.config.options.highConfidence) {
+                confidence = 'High';
+            }
+            else if (lastResult.confidence >= global.config.options.mediumConfidence) {
+                confidence = 'Medium';
+            }
+        }
+
         res.render('final', {
             title: 'Final - TypingDNA',
             sid:req.sessionID,
@@ -30,7 +43,8 @@ var final = {
             messages: messages,
             isNewUser: isNewUSer,
             patternCount: patternCount,
-            device: device
+            device: device,
+            confidence: confidence
         });
     },
 
