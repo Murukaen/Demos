@@ -13,18 +13,6 @@ function final(req, res) {
     var patternCount = sessionData.patternCount || 0;
     var device = sessionData.device || 'desktop';
     var resultColour = '#f8cd00';
-    var showEnroll = false;
-    if (lastResult && lastResult.score) {
-        if (lastResult.score > 75) {
-            showEnroll = true;
-        }
-        if (lastResult.score < 50) {
-            resultColour = '#c70000'
-        }
-        else if (lastResult.score >= 70) {
-            resultColour = '#45bb64'
-        }
-    }
 
     var confidence;
         
@@ -36,6 +24,12 @@ function final(req, res) {
         else if (lastResult.confidence >= global.config.options.mediumConfidence) {
             confidence = 'Medium';
         }
+    }
+
+    var showEnroll = lastResult && lastResult.score && loggedIn && lastResult.score >= global.config.options.autoEnrollThreshold;
+
+    if (showEnroll) {
+        patternCount += 1;
     }
 
     res.render('final', {

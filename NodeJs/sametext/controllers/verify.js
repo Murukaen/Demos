@@ -103,9 +103,26 @@ var verify = {
             } else {
                 /** Typing pattern authentication succeeded, redirect to final. */
                 sessionData.typingResult = 1;
-                return req.session.save(function () {
-                    res.redirect('final');
-                })
+                if (result['score'] > global.config.options.autoEnrollThreshold) {
+                    // if score exceeds threshold, save pattern (auto-enroll)
+                    typingDnaClient.save(
+                        sessionData.internalUserId,
+                        typing_pattern,
+                        function(err,result) {
+                            if(err || (result && result['success'] === 0)) {
+                                return functions.displayError(req, res,
+                                    {clearSession: true, message: 'Error saving user data.'
+                                    });
+                            }
+                            return req.session.save(function() {
+                                res.redirect('final');
+                            })
+                        })
+                } else {
+                    return req.session.save(function () {
+                        res.redirect('final');
+                    })
+                }
             }
         })
     }
