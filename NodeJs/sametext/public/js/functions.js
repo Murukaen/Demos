@@ -9,6 +9,7 @@ function initControls() {
         for (var i = 0; i < controls.length; i++) {
             controls[i].onkeydown = function(event) {
                 if (event.keyCode === 13) {
+                    // enter is pressed
                     event.preventDefault();
                     var stackLength = getStackLen();
                     if( stackLength &&
