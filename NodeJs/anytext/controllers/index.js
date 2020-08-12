@@ -65,6 +65,7 @@ var index = {
                     result['count'] = result['mobilecount'];
                 }
                 if(result['success'] === 1) {
+                    sessionData.patternCount = result['count'];
                     req.session.save(function() {
                         if(result.count > 0) {
                             /** User is allready enrolled, redirect to verify. */
