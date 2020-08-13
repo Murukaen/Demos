@@ -62,7 +62,7 @@ var index = {
                 if(result['count'] === 0 && result['mobilecount'] === 0) {
                     req.session.isNewUser = true;
                 }
-                /** If thus is a mobile device check the mobilecount parameter. */
+                /** If this is a mobile device check the mobilecount parameter. */
                 if(isMobile) {
                     result['count'] = result['mobilecount'];
                 }
@@ -113,7 +113,7 @@ var index = {
                     } else {
                         /**
                          * The user does not have previously saved typing pattern for this textId
-                         * check if he has patterns with other textIs
+                         * check if he has patterns with other textIds
                          */
                         typingDnaClient.check({
                                 userId : sessionData.internalUserId,
